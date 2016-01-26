@@ -1,0 +1,26 @@
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  # password: admin123
+  url: jdbc:h2:./target/userdb
+  properties:
+    charSet: UTF-8
+    hibernate.hbm2ddl.auto: update
+  maxWaitForConnection: 1s
+  minSize: 8
+  maxSize: 32
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+# Logging settings.
+logging:
+  level: INFO
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{15} - %X{code} %msg %n"
+      currentLogFilename: /var/log/user-statistics.log
+      archive: true
+      archivedLogFilenamePattern: /var/log/player-doc-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 5
+      timeZone: CET

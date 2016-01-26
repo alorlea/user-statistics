@@ -1,0 +1,27 @@
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password: admin123
+  url: jdbc:mysql://127.0.0.1:3306/userdb
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+    hibernate.hbm2ddl.auto: update
+  maxWaitForConnection: 1s
+  minSize: 8
+  maxSize: 32
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+# Logging settings.
+logging:
+  level: INFO
+  appenders:
+    - type: console
+    - type: file
+      threshold: INFO
+      logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{15} - %X{code} %msg %n"
+      currentLogFilename: /var/log/user-statistics.log
+      archive: true
+      archivedLogFilenamePattern: /var/log/player-doc-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 5
+      timeZone: CET

@@ -1,0 +1,14 @@
+service:
+  build: .
+  ports:
+    - "8080:8080"
+    - "8081:8081"
+  links:
+    - mysql
+mysql:
+  ports:
+    - "3306:3306"
+  image: mysql:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=admin123
+    - MYSQL_DATABASE=userdb
