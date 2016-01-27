@@ -42,6 +42,10 @@ java -jar target/user-statistics-service-1.0-SNAPSHOT.jar server conf/config.yam
 You can run the service making use of either h2 database or MySQL. The configuration files are under the conf folder.
 The structure is as follows:
 
+By default the ports of the service are 8080 and 8081 for the admin port. You can access the /healthcheck resource through the admin port.
+
+You can change dropwizard port configuration based on the configuration reference found on [dropwizard reference](http://dropwizard.github.io/dropwizard/0.8.2/docs/manual/configuration.html)
+
 ```yaml
 
 database:
