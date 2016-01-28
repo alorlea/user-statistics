@@ -38,10 +38,19 @@ public class UserRegistrationResource {
     public Response createNewUser(UserJSONRequest userJSONRequest){
         LOGGER.info("Received request to create a new user");
         //Do something to store the value somewhere
-        User user = new User(userJSONRequest.getUsername(), userJSONRequest.getPassword());
-        userAccessAPI.createUser(user);
+        Response response;
+        //check if user already exists
+        User checkUser = userAccessAPI.findUser(userJSONRequest.getUsername());
+        if(checkUser!=null){
+            LOGGER.debug("Received username: "+ userJSONRequest.getUsername()+" but it is already in the system");
+            response = Response.status(Response.Status.OK).build();
+        }else {
+            User user = new User(userJSONRequest.getUsername(), userJSONRequest.getPassword());
+            userAccessAPI.createUser(user);
 
-        LOGGER.debug("Received username: " + userJSONRequest.getUsername() +" with password: "+ userJSONRequest.getPassword());
-        return Response.status(201).build();
+            LOGGER.debug("Received username: " + userJSONRequest.getUsername() + " with password: " + userJSONRequest.getPassword());
+            response = Response.status(Response.Status.CREATED).build();
+        }
+        return response;
     }
 }
