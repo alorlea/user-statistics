@@ -12,6 +12,9 @@
     <artifactId>user-statistics-client</artifactId>
     <description>User statistics REST client</description>
     <packaging>jar</packaging>
+    <properties>
+        <hystrix.version>1.4.21</hystrix.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -37,6 +40,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>1.10.19</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>${hystrix.version}</version>
         </dependency>
     </dependencies>
     <build>
